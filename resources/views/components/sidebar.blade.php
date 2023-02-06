@@ -15,7 +15,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>{{ __('admin.dash') }}</span></a>
     </li>
@@ -32,8 +32,8 @@
         </a>
         <div id="collapseCategory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">All Categories</a>
-                <a class="collapse-item" href="cards.html">Add New</a>
+                <a class="collapse-item" href="{{ route('admin.categories.index') }}">All Categories</a>
+                <a class="collapse-item" href="{{ route('admin.categories.create') }}">Add New</a>
             </div>
         </div>
     </li>

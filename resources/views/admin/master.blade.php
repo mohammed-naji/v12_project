@@ -20,10 +20,68 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('adminassets/css/sb-admin-2.min.css') }}" rel="stylesheet">
     @yield('styles')
+
+    @if (App::getLocale() == 'ar')
+        <style>
+            body {
+                direction: rtl;
+                text-align: right;
+            }
+
+            .sidebar {
+                padding: 0
+            }
+
+            .sidebar .nav-item .nav-link {
+                text-align: right;
+            }
+
+            .sidebar .nav-item .nav-link[data-toggle=collapse]::after {
+                float: left;
+                transform: rotate(180deg)
+            }
+
+            .ml-auto, .mx-auto {
+                margin-left: unset!important;
+                margin-right: auto!important;
+            }
+
+            .mr-auto, .mx-auto {
+                margin-right: unset!important;
+                margin-left: auto!important;
+            }
+
+            .input-group>.input-group-append>.btn, .input-group>.input-group-append>.input-group-text, .input-group>.input-group-prepend:first-child>.btn:not(:first-child), .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child), .input-group>.input-group-prepend:not(:first-child)>.btn, .input-group>.input-group-prepend:not(:first-child)>.input-group-text {
+                border-top-left-radius: .35rem;
+                border-bottom-left-radius: .35rem;
+
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        </style>
+    @endif
+
+    <style>
+        .langs img {
+            opacity: .5;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            /* object-fit: cover */
+        }
+
+        .langs img.active {
+            opacity: 1;
+            box-shadow: 0 0 10px #555;
+            /* width: 35px */
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
 
+    {{-- @dump(App::getLocale()) --}}
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -61,15 +119,25 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <ul>
+
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                <li>
-                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                        {{ $properties['native'] }}
+                                <li class="nav-item">
+                                    <a class="nav-link langs" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+
+                                        <img class="{{ App::getLocale() == $localeCode ? 'active' : '' }}" width="30" src="{{ asset('adminassets/img/'.$properties['flag']) }}" alt="">
+
+{{-- {{ $localeCode }} --}}
+                                        {{-- @if ($localeCode == 'ar')
+                                        <img width="30" src="{{ asset('adminassets/img/ps.png') }}" alt="">
+                                        @else
+                                        <img width="30" src="{{ asset('adminassets/img/uk.png') }}" alt="">
+                                        @endif --}}
+
+                                        {{-- {{ $properties['native'] }} --}}
                                     </a>
                                 </li>
                             @endforeach
-                        </ul>
+
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
