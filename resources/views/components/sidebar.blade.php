@@ -50,8 +50,8 @@
         </a>
         <div id="collapseSkills" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">All Skills</a>
-                <a class="collapse-item" href="cards.html">Add New</a>
+                <a class="collapse-item" href="{{ route('admin.skills.index') }}">All Skills</a>
+                <a class="collapse-item" href="{{ route('admin.skills.create') }}">Add New</a>
             </div>
         </div>
     </li>
@@ -87,7 +87,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.freelancers') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Freelancers</span></a>
     </li>

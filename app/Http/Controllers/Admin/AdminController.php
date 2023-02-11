@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -15,5 +16,19 @@ class AdminController extends Controller
         // App::setLocale($lang);
 
         return view('admin.index');
+    }
+
+    public function freelancers()
+    {
+        $users = User::whereType('employee')->get();
+
+        return view('admin.freelancers', compact('users'));
+    }
+
+    public function freelancers_destroy($id)
+    {
+        User::destroy($id);
+
+        return redirect()->back()->with('msg', 'Freelancer deleted successfully')->with('type', 'danger');
     }
 }
