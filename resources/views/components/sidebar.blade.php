@@ -68,8 +68,8 @@
         </a>
         <div id="collapseProjects" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">All Projects</a>
-                <a class="collapse-item" href="cards.html">Add New</a>
+                <a class="collapse-item" href="{{ route('admin.projects.index') }}">All Projects</a>
+                <a class="collapse-item" href="{{ route('admin.projects.create') }}">Add New</a>
             </div>
         </div>
     </li>

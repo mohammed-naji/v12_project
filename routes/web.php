@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -20,6 +21,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
         Route::delete('/freelancers/{id}', [AdminController::class, 'freelancers_destroy'])->name('freelancers.destroy');
         Route::resource('categories', CategoryController::class);
         Route::resource('skills', SkillController::class);
+        Route::resource('projects', ProjectController::class);
 
     });
 
