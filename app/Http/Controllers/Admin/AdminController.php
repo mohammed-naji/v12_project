@@ -31,4 +31,17 @@ class AdminController extends Controller
 
         return redirect()->back()->with('msg', 'Freelancer deleted successfully')->with('type', 'danger');
     }
+
+    public function settings()
+    {
+        return view('admin.settings');
+    }
+
+    public function settings_data(Request $request)
+    {
+        settings()->set('site_name', $request->site_name);
+        settings()->save();
+
+        return redirect()->route('admin.settings');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\SiteController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -18,6 +19,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
 
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/freelancers', [AdminController::class, 'freelancers'])->name('freelancers');
+        Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
+        Route::post('/settings-data', [AdminController::class, 'settings_data'])->name('settings_data');
         Route::delete('/freelancers/{id}', [AdminController::class, 'freelancers_destroy'])->name('freelancers.destroy');
         Route::resource('categories', CategoryController::class);
         Route::resource('skills', SkillController::class);
@@ -25,9 +28,11 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
 
     });
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', [SiteController::class, 'index'])->name('site.index');
+
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 
     Auth::routes();
 
