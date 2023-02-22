@@ -10,6 +10,8 @@ class Proposal extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     public function freelancer()
     {
         return $this->belongsTo(User::class, 'employee_id')->withDefault();

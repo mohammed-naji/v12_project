@@ -30,6 +30,22 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
 
     Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
+    Route::get('/category/{category:slug}', [SiteController::class, 'category'])->name('site.category');
+
+    Route::get('/project/{project:slug}', [SiteController::class, 'project'])->name('site.project');
+
+    Route::get('/project/{project:slug}/apply-now', [SiteController::class, 'apply_now'])->name('site.apply_now');
+
+    Route::post('/project/{project:slug}/apply-now', [SiteController::class, 'apply_now_data'])->name('site.apply_now_data');
+
+    Route::get('/delete-proposal/{id}', [SiteController::class, 'delete_proposal'])->name('site.delete_proposal');
+
+    Route::get('/user/profile', [SiteController::class, 'user_profile'])->name('site.user_profile')->middleware('auth');
+    Route::post('/notify/{id}', [SiteController::class, 'read_notify'])->name('site.read_notify')->middleware('auth');
+
+
+    // Route::get('/category/{slug}', [SiteController::class, 'category'])->name('site.category');
+
     // Route::get('/', function () {
     //     return view('welcome');
     // });

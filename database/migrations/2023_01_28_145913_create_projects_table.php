@@ -20,6 +20,9 @@ return new class extends Migration
             $table->boolean('status');
             $table->double('budget');
             $table->string('time');
+            $table->string('job_type');
+            $table->integer('vacancy')->default(1);
+            $table->string('location')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->timestamps();

@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('adminassets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('styles')
 
     @if (App::getLocale() == 'ar')
@@ -381,6 +382,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('adminassets/js/sb-admin-2.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @vite('resources/js/app.js')
     @yield('scripts')
 </body>
 

@@ -65,7 +65,7 @@
                                 <span class="flaticon-tour"></span>
                             </div> --}}
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">{{ $cat->trans_name }}</a></h5>
+                               <h5><a href="{{ route('site.category', $cat->slug) }}">{{ $cat->trans_name }}</a></h5>
                                 <span>({{ $cat->projects_count }})</span>
                             </div>
                         </div>
@@ -102,46 +102,7 @@
         <!-- Online CV Area End-->
         <!-- Featured_job_start -->
         <section class="featured-job-area feature-padding">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            <h2>Recent Jobs</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        @foreach ($latest_project as $pro)
-                            <!-- single-job-content -->
-                            <div class="single-job-items mb-30">
-                                <div class="job-items">
-                                    {{-- <div class="company-img">
-                                        <a href="job_details.html"><img src="{{ asset('siteassets/img/icon/job-list1.png') }}" alt=""></a>
-                                    </div> --}}
-                                    <div class="job-tittle">
-                                        <a href="job_details.html"><h4>{{ $pro->trans_name }}</h4></a>
-                                        <ul>
-                                            <li>Creative Agency</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                            <li>$3500 - $4000</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="items-link f-right">
-                                    <a href="job_details.html">Full Time</a>
-                                    <span>7 hours ago</span>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        <div class="nav-wrapper">
-                            {{ $latest_project->links(); }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('site.parts.latest_projects')
         </section>
         <!-- Featured_job_end -->
         <!-- How  Apply Process Start-->
@@ -350,19 +311,20 @@
 @section('scripts')
 
 <script>
-    $('.nav-wrapper a').on('click', function(e) {
+    $('.featured-job-area').on('click', '.nav-wrapper a', function(e) {
         e.preventDefault();
-
         let url = $(this).attr('href')
-
         $.ajax({
             type: 'get',
             url: url,
             success: function(res) {
-                console.log('Done');
+                // console.log(res);
+                $('.featured-job-area').html(res);
+            },
+            error: function(err) {
+                console.log(err);
             }
         });
-
         // console.log(url);
     })
 </script>

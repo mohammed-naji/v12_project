@@ -33,4 +33,34 @@ trait Trans {
 
         return $name['ar'];
     }
+
+    public function getTransDescriptionAttribute() {
+        $description = json_decode($this->description, true);
+
+        if(is_null($description)) {
+            return $this->description;
+        }
+
+        return $description[app()->getLocale()];
+    }
+
+    public function getEnDescriptionAttribute() {
+        $description = json_decode($this->description, true);
+
+        if(is_null($description)) {
+            return $this->description;
+        }
+
+        return $description['en'];
+    }
+
+    public function getArDescriptionAttribute() {
+        $description = json_decode($this->description, true);
+
+        if(is_null($description)) {
+            return $this->description;
+        }
+
+        return $description['ar'];
+    }
 }

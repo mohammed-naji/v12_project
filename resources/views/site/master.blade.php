@@ -48,7 +48,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset('siteassets/img/logo/logo.png') }}" alt=""></a>
+                                <a href="{{ url('/') }}"><img src="{{ asset('siteassets/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -74,8 +74,27 @@
                                 </div>
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
+
+                                    @auth
+                                    <a href="{{ route('register') }}" class="btn head-btn1" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    </form>
+                                    @endauth
+
+                                    @guest
+                                    <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
+                                    <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
+                                    @endguest
+
+                                    {{-- @if (Auth::check())
+                                    <a href="{{ route('register') }}" class="btn head-btn1">Logout</a>
+                                    @else
+                                    <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
+                                    <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
+                                    @endif --}}
+
                                 </div>
                             </div>
                         </div>
